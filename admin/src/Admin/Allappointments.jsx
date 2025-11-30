@@ -12,8 +12,12 @@ const AllAppointments = () => {
 
   const fetchAllAppointments = async () => {
     try {
-      const res = await axios.get("https://doc-connect-9ms6.onrender.com/admin/api/admin/appointments");
-      setAppointments(res.data);
+      const res = await axios.get(
+        "https://doc-connect-9ms6.onrender.com/admin/api/admin/appointments"
+      );
+      // Ensure appointments is an array
+      const data = Array.isArray(res.data) ? res.data : res.data.appointments || [];
+      setAppointments(data);
     } catch (error) {
       console.error(error);
       toast.error("❌ Failed to load appointments");
@@ -24,7 +28,10 @@ const AllAppointments = () => {
 
   const handleStatusChange = async (id, status) => {
     try {
-      await axios.put(`https://doc-connect-9ms6.onrender.com/api/admin/appointments/${id}`, { status });
+      await axios.put(
+        `https://doc-connect-9ms6.onrender.com/api/admin/appointments/${id}`,
+        { status }
+      );
       toast.success(`Status updated to ${status}`);
       setAppointments((prev) =>
         prev.map((appt) => (appt._id === id ? { ...appt, status } : appt))
@@ -43,7 +50,7 @@ const AllAppointments = () => {
     <div className="px-4 md:px-16 py-12 bg-gray-100 min-h-screen">
       <h1 className="text-3xl font-bold mb-8">All Appointments</h1>
 
-      {appointments.length === 0 ? (
+      {appointments && appointments.length === 0 ? (
         <p className="text-gray-600">No appointments found.</p>
       ) : (
         <>
