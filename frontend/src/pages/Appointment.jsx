@@ -43,7 +43,7 @@ const Appointment = () => {
       setLoading(true);
 
       // Send appointment data to backend
-      await axios.post("http://localhost:3000/api/appointments", {
+      await axios.post("https://doc-connect-9ms6.onrender.com/api/appointments", {
         doctorId: doctor._id,
         doctorName: doctor.name,
         speciality: doctor.speciality,

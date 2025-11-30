@@ -16,7 +16,7 @@ export default function MyProfile() {
   const fetchProfile = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:3000/api/v1/user/getuserprofile/${userId}`
+        `https://doc-connect-9ms6.onrender.com/api/v1/user/getuserprofile/${userId}`
       );
       const userData = res.data.user;
       setUser(userData);

@@ -12,7 +12,7 @@ const AllAppointments = () => {
 
   const fetchAllAppointments = async () => {
     try {
-      const res = await axios.get("http://localhost:3000/api/admin/appointments");
+      const res = await axios.get("https://doc-connect-9ms6.onrender.com/admin/api/admin/appointments");
       setAppointments(res.data);
     } catch (error) {
       console.error(error);
@@ -24,7 +24,7 @@ const AllAppointments = () => {
 
   const handleStatusChange = async (id, status) => {
     try {
-      await axios.put(`http://localhost:3000/api/admin/appointments/${id}`, { status });
+      await axios.put(`https://doc-connect-9ms6.onrender.com/admin/api/admin/appointments/${id}`, { status });
       toast.success(`Status updated to ${status}`);
       setAppointments((prev) =>
         prev.map((appt) => (appt._id === id ? { ...appt, status } : appt))
