@@ -24,7 +24,7 @@ const AllAppointments = () => {
 
   const handleStatusChange = async (id, status) => {
     try {
-      await axios.put(`https://doc-connect-9ms6.onrender.com/admin/api/admin/appointments/${id}`, { status });
+      await axios.put(`https://doc-connect-9ms6.onrender.com/api/admin/appointments/${id}`, { status });
       toast.success(`Status updated to ${status}`);
       setAppointments((prev) =>
         prev.map((appt) => (appt._id === id ? { ...appt, status } : appt))
