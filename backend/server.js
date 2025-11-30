@@ -16,7 +16,7 @@ const _dirname = path.resolve();
 
 
 app.use(cors({
-  origin: ["https://doc-connect-9ms6.onrender.com/admin/", "https://doc-connect-9ms6.onrender.com"],
+  origin: ["https://doc-connect-9ms6.onrender.com/admin", "https://doc-connect-9ms6.onrender.com"],
   credentials: true
 }));
 //app.use(cors())
