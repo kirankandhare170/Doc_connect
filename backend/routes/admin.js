@@ -20,6 +20,10 @@ router.get("/appointments", async (req, res) => {
 // -----------------------------
 // PUT - Update appointment status (approve / reject / cancel)
 // -----------------------------
+
+
+
+
 router.put("/appointments/:id", async (req, res) => {
   try {
     const { status } = req.body;
@@ -38,11 +42,11 @@ router.put("/appointments/:id", async (req, res) => {
       return res.status(404).json({ message: "Appointment not found" });
     }
 
-    // Date formatting
+    // Format appointment date
     const formattedDate = new Date(appointment.appointmentDate)
       .toLocaleDateString("en-IN");
 
-    // Prepare mail content
+    // Email content
     const subject = `Your Appointment is ${status}`;
     const html = `
       <h2>Appointment ${status.toUpperCase()}</h2>
@@ -55,7 +59,7 @@ router.put("/appointments/:id", async (req, res) => {
     `;
 
     // Send email
-    await sendEmail(appointment.patientEmail, subject, html);  // <-- FIX #2 (await)
+    await sendEmail(appointment.patientEmail, subject, html);
 
     res.json({
       success: true,
@@ -70,4 +74,3 @@ router.put("/appointments/:id", async (req, res) => {
 });
 
 module.exports = router;
-
